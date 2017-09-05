@@ -26,6 +26,7 @@
 *color7: #a89984
 *color15: #ebdbb2
 
+URxvt.background: [60]#000000
 URxvt.color24:  #076678
 URxvt.color66:  #427b58
 URxvt.color88:  #9d0006
@@ -74,15 +75,13 @@ URxvt.internalBorder:           10
 URxvt.buffered:                 false
 URxvt.saveLines:                12000
 URxvt.scrollBar:                false
-URxvt.depth:                    0
+URxvt.depth:                  	32
 URxvt.perl-ext-common:          vtwheel,default,clipboard,matcher,resize-font
 URxvt.url-launcher:             /usr/bin/xdg-open
 URxvt.matcher.button:           1
 URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
 URxvt.iso14755:                 False
 URxvt.termName:                 rxvt-unicode-256color
-URxvt.font:                     FONT1
-URxvt.boldFont:                 FONT2
 
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up

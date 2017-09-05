@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: latin-1 -*-
 
 import json
 from websocket import create_connection

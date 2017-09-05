@@ -24,7 +24,7 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/share/i3blocks/$BLOCK_NAME
+command=/usr/lib/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -92,12 +92,12 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label= 
+label=
 #instance=/mnt/data
 interval=30
 
 [wifi]
-label= 
+label=
 instance=wlp1s0
 interval=10
 separator=false
