@@ -2,8 +2,8 @@
 
 pacman -S - < pkglist.txt
 
-sudo pip install websocket-client
-sudo pip install requests
+pip install websocket-client
+pip install requests
 
 mkdir ~/.config/termite
 

@@ -1,0 +1,9 @@
+alsa-utils
+arandr
+chromium
+feh
+python-pip
+rofi
+scrot
+termite
+udiskie

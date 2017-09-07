@@ -26,13 +26,13 @@
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME
 separator_block_width=15
-markup=none
+markup=pango
 
 [currency]
 name=currency
 command=~/.config/i3blocks/blocklets/exchange_usd_pln.py
 interval=86400
-label=$
+label=<span color="#00b2b2">$</span>
 
 [jd]
 name=jd
@@ -54,11 +54,8 @@ interval=600
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-label=
-#label=♪
+command=echo "$(~/.config/i3blocks/colorize.sh ) $(/usr/lib/i3blocks/$BLOCK_NAME)"
 instance=Master
-#instance=PCM
-#interval=once
 interval=1
 signal=10
 
@@ -67,7 +64,7 @@ signal=10
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=
+command=echo "$(~/.config/i3blocks/colorize.sh ) $(/usr/lib/i3blocks/$BLOCK_NAME)"
 interval=10
 #min_width= 100.00%
 separator=false
@@ -76,12 +73,12 @@ separator=false
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=
+command=echo "$(~/.config/i3blocks/colorize.sh ) $(/usr/lib/i3blocks/$BLOCK_NAME)"
 separator=false
 interval=30
 
 [memory]
-label=
+command=echo "$(~/.config/i3blocks/colorize.sh ) $(/usr/lib/i3blocks/$BLOCK_NAME)"
 instance=swap
 separator=false
 interval=30
@@ -92,7 +89,7 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=
+command=echo "$(~/.config/i3blocks/colorize.sh ) $(/usr/lib/i3blocks/$BLOCK_NAME)"
 #instance=/mnt/data
 interval=30
 
@@ -131,7 +128,7 @@ interval=30
 # Date Time
 #
 [time]
-command=date '+ %Y-%m-%d  %H:%M:%S'
+command=date "+$(~/.config/i3blocks/colorize.sh ) %Y-%m-%d $(~/.config/i3blocks/colorize.sh ) %H:%M:%S"
 interval=1
 
 # Generic media player support
