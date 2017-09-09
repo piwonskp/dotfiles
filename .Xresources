@@ -87,7 +87,6 @@ URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up
 
 ! Rofi
-rofi.opacity:           90
 rofi.width:             30
 rofi.lines:             5
 rofi.font:              Source Code Pro 9
@@ -96,5 +95,13 @@ rofi.hide-scrollbar:    true
 rofi.padding:           20
 rofi.eh:                2
 rofi.bw:                8
-rofi.bc:                #458588
 
+rofi.color-*:  #32458588, #458588, #002b36, #000000, #000000
+
+! State:           'bg',     	'fg',     	'bgalt',	'hlbg',   	'hlfg'
+rofi.color-normal: #00458588,  #f3f4f5,  	#00458588,  	#00458588,  	#9575cd
+rofi.color-urgent: #00458588,  #f3f4f5,  	#00458588,  	#00458588,  	#9575cd
+rofi.color-active: #00458588,  #f3f4f5,  	#00458588,  	#00458588,  	#9575cd 
+
+!                  'background', 'border', 'separator'
+rofi.color-window: #85458588,      #002b36,  #002b36
