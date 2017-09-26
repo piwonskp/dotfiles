@@ -90,8 +90,8 @@ set $workspace9 "9"
 set $workspace10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1 
-bindsym $mod+2 workspace $workspace2 
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
@@ -149,7 +149,7 @@ bindsym $mod+r mode "resize"
 # Color definitions
 set $bg-color		 #91ab34
 # set $bg-color          #00b2b2
-set $text-color		 black
+set $text-color		 #000000
 
 
 set $bar-text-color      #f3f4f5

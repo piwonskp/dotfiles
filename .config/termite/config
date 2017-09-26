@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Monospace 9
+font = Noto Mono 9
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -42,7 +42,7 @@ foreground_bold = #ffffff
 background = rgba(63, 63, 63, 0.8)
 
 # if unset, will reverse foreground and background
-highlight = #2f2f2f
+#highlight = #2f2f2f
 
 # colors from color0 to color254 can be set
 color0 = #3f3f3f
