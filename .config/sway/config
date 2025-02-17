@@ -14,18 +14,17 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term terminal
+set $term foot
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu rofi -show drun
-set $lock swaylock -f -i /usr/share/backgrounds/layers-blue-lockscreen.jpg
+set $lock swaylock -f -i /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-# output * bg /usr/share/backgrounds/i3_default_background.jpg fill
-output * bg /usr/share/backgrounds/wallpapers-juhraya/Austria_by_Rutger_Heijmerikx.jpg fill
+output * bg ~/.config/sway/wallpaper.jpg fill
 output "LVDS-1" pos 0 0
 #
 # Example configuration:
@@ -37,8 +36,8 @@ output "LVDS-1" pos 0 0
 ### Idle configuration
 exec swayidle -w \
          timeout 300 '$lock' \
-         timeout 295 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
+         timeout 295 'swaymsg "output * power off"' \
+              resume 'swaymsg "output * power on"' \
          timeout 900 'systemctl suspend' \
          before-sleep '$lock'
 
@@ -60,7 +59,7 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 input * xkb_layout pl
-input 1739:52392:DELL097C:00_06CB:CCA8_Touchpad {
+input type:touchpad {
     tap enabled
 }
 
@@ -235,7 +234,9 @@ client.urgent             $urgent-color   $urgent-color     $text-color   $secon
 # thin borders
 # hide_edge_borders both
 
-default_border pixel 2
+smart_borders on
+
+default_border pixel 1
 
 #
 # Status Bar:
@@ -293,26 +294,32 @@ bindsym $mod+x move workspace to output right
 # Read Xresources for XWayland
 exec xrdb ~/.Xresources
 
+# Allow switching between workspaces with left and right swipes
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+bindgesture pinch:inward+up move up
+bindgesture pinch:inward+down move down
+bindgesture pinch:inward+left move left
+bindgesture pinch:inward+right move
+bindgesture pinch:4:inward exec $menu
+
 # gaps inner 15
 # gaps outer 15
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 bindsym XF86AudioMicMute exec amixer set Capture toggle # Mute microphone
 
 bindsym XF86MonBrightnessUp exec brightnessctl s +5% # increase screen brightness
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # decrease screen brightness
+# Apps
+bindsym $mod+q exec firefox
 
 bindsym $mod+f1 exec $lock
 
 bindsym --release Print exec grim -g \"$(slurp)" - | wl-copy
 bindsym --release Shift+Print exec grim - | wl-copy
-bindsym $mod+print exec --no-startup-id bash $HOME/.config/sway/toggle-screen-recorder.sh
-
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
-exec --no-startup-id gammastep-indicator
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 include /etc/sway/config.d/*

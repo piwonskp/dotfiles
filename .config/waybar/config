@@ -6,19 +6,83 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "custom/exchange", "custom/jd", "network", "memory", "disk", "backlight", "battery", "clock", "tray"],
+    "modules-right": ["inhibitor", "idle_inhibitor", "backlight", "pulseaudio", "custom/exchange", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [],
+        "app_ids-mapping": {
+          "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+	"group/group-power": {
+	    "orientation": "inherit",
+	    "drawer": {
+		"transition-duration": 500,
+		"children-class": "power-group-element",
+		"transition-left-to-right": true,
+	    },
+	    "modules": [
+		"custom/power", // First element is the "group leader" and won't ever be hidden
+		"custom/reboot",
+		"custom/quit",
+		"custom/lock",
+		"custom/sleep",
+	    ],
+	},
+	"custom/quit": {
+	    "format": "",
+	    "tooltip-format": "logout",
+	    "on-click": "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
+	},
+	"custom/lock": {
+	    "format": "",
+	    "tooltip-format": "lock",
+	    "on-click": "swaylock",
+	"spacing": 50
+	},
+	"custom/sleep": {
+	    "format": "",
+	    "tooltip-format": "sleep",
+	    "on-click": "systemctl suspend",
+	    "spacing": 500
+	},
+	"custom/reboot": {
+	    "format": "",
+	    "tooltip-format": "reboot",
+	    "on-click": "reboot"
+	},
+	"custom/power": {
+	    "format": "",
+	    "tooltip-format": "shutdown",
+	    "on-click": "shutdown now"
+	},
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "sway/workspaces": {
       "format": "{name}"
     },
+    "inhibitor": {
+	"what": "sleep",
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "🖥️",
+            "deactivated": "🔒"
+        },
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+	"tooltip-format-deactivated": "Normal mode",
+	"tooltip-format-activated": "Watch mode"
     },
     "tray": {
         // "icon-size": 21,
@@ -33,14 +97,22 @@
    //     "tooltip": false
    // },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+	"states": {
+		"warning": 70,
+		"critical": 90,
+        "danger": 95
+	}
     },
     "disk": {
         "format": "{percentage_free}% ",
         "path": "/"
     },
     "backlight": {
-       //"device": "intel_backlight",
+       "device": "intel_backlight",
+       "on-scroll-up": "light -A 1",
+       "on-scroll-down": "light -U 1",
+       "on-click-right": "light -S 1",
        "format": "{percent}% {icon}",
        "format-icons": ["", ""]
     },
@@ -48,7 +120,8 @@
         "states": {
             // "good": 95,
             "warning": 30,
-            "critical": 15
+            "critical": 15,
+            "danger": 5
         },
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
@@ -59,8 +132,8 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-	//"interface": "wlp3s0",
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{signalStrength}%",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -83,14 +156,10 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/exchange": {
-      "format": "{} ",
-      "interval": 86400,
-      "exec": "~/.config/i3blocks/blocklets/exchange_usd_pln.py"
-    },
-    "custom/jd": {
-      //"interval": 600,
-      "exec": "python ~/.config/waybar/modules/jd.py"
     }
+    // "custom/exchange": {
+    //  "format": "{} ",
+    //  "interval": 86400,
+    //  "exec": "~/.config/i3blocks/blocklets/exchange_usd_pln.py"
+    // }
 }

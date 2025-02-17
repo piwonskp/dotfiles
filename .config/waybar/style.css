@@ -77,16 +77,42 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor,
+#inhibitor,
 #custom-jd,
-#custom-exchange {
+#custom-exchange
+/*.modules-right .module*/
+{
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
 }
 
+#group-power .module
+{
+    padding: 0 20px;
+    margin: 0 0px;
+    color: #ffffff;
+}
+
+#group-power .module:hover,
+#pulseaudio.muted, 
+#network.disconnected
+{
+    background: rgba(0, 0, 0, 0.2);
+    color: #00d69e;
+    box-shadow: inherit;
+    border-bottom: 3px solid #00d69e;
+}
+
 #battery.charging {
     color: #ffffff;
-    background-color: #26A65B;
+    /* background-color: #26A65B; */
+    border-bottom: 3px solid #26A65B;
+}
+
+.warning {
+    color: #ffffff;
+    border-bottom: 3px solid orange;
 }
 
 @keyframes blink {
@@ -96,7 +122,8 @@ window#waybar.chromium {
     }
 }
 
-#battery.critical:not(.charging) {
+#battery.critical:not(.charging),
+.danger {
     background-color: #f53c3c;
     color: #ffffff;
     animation-name: blink;
@@ -104,26 +131,55 @@ window#waybar.chromium {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    border-radius: 1em;
 }
+
+.critical {
+    border-bottom: 3px solid red;
+}
+/*.danger {
+    border-bottom: 3px solid red;
+    animation: blink-border 0.5s linear infinite;
+}
+*/
 
 label:focus {
     background-color: #000000;
 }
 
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+tooltip {
+    border-radius: 1em;
 }
 
 #temperature.critical {
     background-color: #eb4d4b;
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+@keyframes blink-border {
+  50% {
+    border: none;
+
+    /*border: 2px dotted rgba(0, 214, 158, 0);*/
+  }
+}
+
+/* transform not supported (yet?) */
+/*@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}*/
+
+#idle_inhibitor.activated,
+#inhibitor.activated {
+    color: #00d69e;
+    /* color: #2d3436;*/
+    /* border-bottom: 3px solid #00d69e;
+    animation: spin 3s ease infinite;*/
+
+    /*border-top: 3px solid #00d69e;*/
+    animation: blink-border 2s ease infinite;
+    border: 2px dotted #00d69e;
+    border-radius: 50%;
+
+    /*border: 2px solid #00d69e;*/
 }
