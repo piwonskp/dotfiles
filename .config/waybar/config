@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["inhibitor", "idle_inhibitor", "backlight", "pulseaudio", "custom/exchange", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
+    "modules-right": ["custom/ticker", "inhibitor", "idle_inhibitor", "custom/docker", "backlight", "pulseaudio", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 14,
@@ -27,7 +27,7 @@
 		"transition-left-to-right": true,
 	    },
 	    "modules": [
-		"custom/power", // First element is the "group leader" and won't ever be hidden
+		"custom/power",
 		"custom/reboot",
 		"custom/quit",
 		"custom/lock",
@@ -42,13 +42,13 @@
 	"custom/lock": {
 	    "format": "",
 	    "tooltip-format": "lock",
-	    "on-click": "swaylock",
+	    "on-click": "bash ~/.config/sway/random_background.sh | xargs -d '\n' swaylock --daemonize -i",
 	"spacing": 50
 	},
 	"custom/sleep": {
 	    "format": "",
 	    "tooltip-format": "sleep",
-	    "on-click": "systemctl suspend",
+	    "on-click": "sh -c '(sleep 0.3s; systemctl suspend)' & disown",
 	    "spacing": 500
 	},
 	"custom/reboot": {
@@ -137,7 +137,8 @@
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "foot nmtui"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -156,10 +157,20 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    }
-    // "custom/exchange": {
-    //  "format": "{} ",
-    //  "interval": 86400,
-    //  "exec": "~/.config/i3blocks/blocklets/exchange_usd_pln.py"
-    // }
+    },
+    "custom/ticker": {
+	"interval": 43200,
+	"exec": "curl -s https://open.er-api.com/v6/latest/USD | jq -r '\"\" + (.rates.EUR | tostring) + \"    \" + (.rates.PLN | tostring)'"
+    },
+   "custom/docker": {
+    "return-type": "json",
+    "exec-on-event": true,
+    "format": "{icon}",
+    "format-icons": "",
+    "exec": "echo \"{\\\"class\\\": \\\"$(systemctl is-active docker)\\\"}\"",
+    "on-click": "systemctl start docker && pkill -SIGRTMIN+10 waybar",
+    "on-click-right": "systemctl stop docker && pkill -SIGRTMIN+10 waybar",
+    "signal": 10,
+    "interval": "once"
+  }
 }

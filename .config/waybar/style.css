@@ -1,3 +1,6 @@
+@define-color primary #00d69e;
+
+
 * {
     border: none;
     border-radius: 0;
@@ -28,8 +31,8 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
+window#waybar.foot {
+    background-color: rgba(36, 36, 36, 0.6);
 }
 
 window#waybar.chromium {
@@ -61,11 +64,6 @@ window#waybar.chromium {
     background-color: #eb4d4b;
 }
 
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
 #clock,
 #battery,
 #cpu,
@@ -85,6 +83,13 @@ window#waybar.chromium {
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
+}
+
+
+#mode {
+    border-bottom: 3px solid @primary;
+    color: @primary;
+    animation: blink-border 1s linear infinite;
 }
 
 #group-power .module
@@ -108,6 +113,13 @@ window#waybar.chromium {
     color: #ffffff;
     /* background-color: #26A65B; */
     border-bottom: 3px solid #26A65B;
+}
+
+.active {
+	color: @primary;
+}
+.inactive {
+	color: white;
 }
 
 .warning {

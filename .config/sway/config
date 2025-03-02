@@ -18,13 +18,15 @@ set $term foot
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu rofi -show drun
-set $lock swaylock -f -i /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
+set $random_image bash ~/.config/sway/random_background.sh | xargs -d "\n"
+set $lock $random_image swaylock --daemonize -i
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg ~/.config/sway/wallpaper.jpg fill
+# output * bg ~/.config/sway/wallpaper.jpg fill
+exec_always $random_image swaybg -m fill -i
 output "LVDS-1" pos 0 0
 #
 # Example configuration:
@@ -294,14 +296,18 @@ bindsym $mod+x move workspace to output right
 # Read Xresources for XWayland
 exec xrdb ~/.Xresources
 
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Allow switching between workspaces with left and right swipes
-bindgesture swipe:right workspace prev
-bindgesture swipe:left workspace next
-bindgesture pinch:inward+up move up
-bindgesture pinch:inward+down move down
-bindgesture pinch:inward+left move left
-bindgesture pinch:inward+right move
-bindgesture pinch:4:inward exec $menu
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+bindgesture pinch:3:inward+up move up
+bindgesture pinch:3:inward+down move down
+bindgesture pinch:3:inward+left move left
+bindgesture pinch:3:inward+right move right
+# bindgesture pinch:4:inward exec $menu
+bindgesture swipe:4:right exec $menu
+
 
 # gaps inner 15
 # gaps outer 15
@@ -314,6 +320,7 @@ bindsym XF86AudioMicMute exec amixer set Capture toggle # Mute microphone
 
 bindsym XF86MonBrightnessUp exec brightnessctl s +5% # increase screen brightness
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # decrease screen brightness
+bindsym $mod+p exec swaymsg "output eDP-1 power toggle"
 # Apps
 bindsym $mod+q exec firefox
 
