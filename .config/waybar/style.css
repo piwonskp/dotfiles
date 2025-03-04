@@ -73,16 +73,26 @@ window#waybar.chromium {
 #network,
 #pulseaudio,
 #tray,
-#mode,
-#idle_inhibitor,
-#inhibitor,
-#custom-jd,
-#custom-exchange
+#mode
 /*.modules-right .module*/
 {
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
+}
+
+
+/* Mode buttons */
+#idle_inhibitor,
+#inhibitor,
+#custom-docker,
+#custom-theme-toggle
+{
+    padding: 0 5px;
+}
+
+#custom-ticker {
+    padding: 10px;
 }
 
 

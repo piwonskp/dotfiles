@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["custom/ticker", "inhibitor", "idle_inhibitor", "custom/docker", "backlight", "pulseaudio", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
+    "modules-right": ["custom/ticker", "inhibitor", "idle_inhibitor", "custom/docker", "custom/theme-toggle", "backlight", "pulseaudio", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 14,
@@ -162,7 +162,19 @@
 	"interval": 43200,
 	"exec": "curl -s https://open.er-api.com/v6/latest/USD | jq -r '\"\" + (.rates.EUR | tostring) + \"    \" + (.rates.PLN | tostring)'"
     },
-   "custom/docker": {
+    "custom/theme-toggle": {
+        "format": "{icon}",
+        "format-icons": {
+            "dark": "",
+            "light": ""
+        },
+        "exec": "gsettings get org.gnome.desktop.interface color-scheme | grep -q 'prefer-dark' && echo '{\"class\": \"dark\", \"alt\": \"dark\"}' || echo '{\"class\": \"light\", \"alt\": \"light\"}'",
+        "return-type": "json",
+        "on-click": "gsettings get org.gnome.desktop.interface color-scheme | grep -q 'prefer-dark' && gsettings set org.gnome.desktop.interface color-scheme prefer-light || gsettings set org.gnome.desktop.interface color-scheme prefer-dark && pkill -SIGRTMIN+11 waybar",
+        "signal": 11,
+        "interval": "once"
+    },
+    "custom/docker": {
     "return-type": "json",
     "exec-on-event": true,
     "format": "{icon}",
