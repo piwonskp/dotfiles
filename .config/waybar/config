@@ -4,9 +4,29 @@
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["custom/ticker", "inhibitor", "idle_inhibitor", "custom/docker", "custom/theme-toggle", "backlight", "pulseaudio", "network", "memory", "disk", "battery", "clock", "tray", "group/group-power"],
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "custom/ticker",
+        "inhibitor",
+        "idle_inhibitor",
+        "custom/docker",
+        "custom/theme-toggle",
+        "backlight",
+        "pulseaudio",
+        "network",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray",
+        "group/group-power"
+    ],
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 14,
@@ -16,59 +36,59 @@
         "on-click-middle": "close",
         "ignore-list": [],
         "app_ids-mapping": {
-          "firefoxdeveloperedition": "firefox-developer-edition"
+            "firefoxdeveloperedition": "firefox-developer-edition"
         }
     },
-	"group/group-power": {
-	    "orientation": "inherit",
-	    "drawer": {
-		"transition-duration": 500,
-		"children-class": "power-group-element",
-		"transition-left-to-right": true,
-	    },
-	    "modules": [
-		"custom/power",
-		"custom/reboot",
-		"custom/quit",
-		"custom/lock",
-		"custom/sleep",
-	    ],
-	},
-	"custom/quit": {
-	    "format": "",
-	    "tooltip-format": "logout",
-	    "on-click": "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
-	},
-	"custom/lock": {
-	    "format": "",
-	    "tooltip-format": "lock",
-	    "on-click": "bash ~/.config/sway/random_background.sh | xargs -d '\n' swaylock --daemonize -i",
-	"spacing": 50
-	},
-	"custom/sleep": {
-	    "format": "",
-	    "tooltip-format": "sleep",
-	    "on-click": "sh -c '(sleep 0.3s; systemctl suspend)' & disown",
-	    "spacing": 500
-	},
-	"custom/reboot": {
-	    "format": "",
-	    "tooltip-format": "reboot",
-	    "on-click": "reboot"
-	},
-	"custom/power": {
-	    "format": "",
-	    "tooltip-format": "shutdown",
-	    "on-click": "shutdown now"
-	},
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "power-group-element",
+            "transition-left-to-right": true,
+        },
+        "modules": [
+            "custom/power",
+            "custom/reboot",
+            "custom/quit",
+            "custom/lock",
+            "custom/sleep",
+        ],
+    },
+    "custom/quit": {
+        "format": "",
+        "tooltip-format": "logout",
+        "on-click": "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
+    },
+    "custom/lock": {
+        "format": "",
+        "tooltip-format": "lock",
+        "on-click": "bash ~/.config/sway/random_background.sh | xargs -d '\n' swaylock --daemonize -i",
+        "spacing": 50
+    },
+    "custom/sleep": {
+        "format": "",
+        "tooltip-format": "sleep",
+        "on-click": "sh -c '(sleep 0.3s; systemctl suspend)' & disown",
+        "spacing": 500
+    },
+    "custom/reboot": {
+        "format": "",
+        "tooltip-format": "reboot",
+        "on-click": "reboot"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip-format": "shutdown",
+        "on-click": "shutdown now"
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "sway/workspaces": {
-      "format": "{name}"
+        "format": "{name}"
     },
     "inhibitor": {
-	"what": "sleep",
+        "what": "sleep",
         "format": "{icon}",
         "format-icons": {
             "activated": "🖥️",
@@ -81,8 +101,8 @@
             "activated": "",
             "deactivated": ""
         },
-	"tooltip-format-deactivated": "Normal mode",
-	"tooltip-format-activated": "Watch mode"
+        "tooltip-format-deactivated": "Normal mode",
+        "tooltip-format-activated": "Watch mode"
     },
     "tray": {
         // "icon-size": 21,
@@ -92,29 +112,32 @@
         "tooltip-format": "{:%Y-%m-%d | %H:%M}",
         "format-alt": "{:%Y-%m-%d}"
     },
-   //  "cpu": {
-   //     "format": "{usage}% ",
-   //     "tooltip": false
-   // },
+    //  "cpu": {
+    //     "format": "{usage}% ",
+    //     "tooltip": false
+    // },
     "memory": {
         "format": "{}% ",
-	"states": {
-		"warning": 70,
-		"critical": 90,
-        "danger": 95
-	}
+        "states": {
+            "warning": 70,
+            "critical": 90,
+            "danger": 95
+        }
     },
     "disk": {
         "format": "{percentage_free}% ",
         "path": "/"
     },
     "backlight": {
-       "device": "intel_backlight",
-       "on-scroll-up": "light -A 1",
-       "on-scroll-down": "light -U 1",
-       "on-click-right": "light -S 1",
-       "format": "{percent}% {icon}",
-       "format-icons": ["", ""]
+        "device": "intel_backlight",
+        "on-scroll-up": "light -A 1",
+        "on-scroll-down": "light -U 1",
+        "on-click-right": "light -S 1",
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "",
+            ""
+        ]
     },
     "battery": {
         "states": {
@@ -129,7 +152,13 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "network": {
         "format-wifi": "{signalStrength}%",
@@ -154,13 +183,17 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "pavucontrol"
     },
     "custom/ticker": {
-	"interval": 43200,
-	"exec": "curl -s https://open.er-api.com/v6/latest/USD | jq -r '\"\" + (.rates.EUR | tostring) + \"    \" + (.rates.PLN | tostring)'"
+        "interval": 43200,
+        "exec": "curl -s https://open.er-api.com/v6/latest/USD | jq -r '\"\" + (.rates.EUR | tostring) + \"    \" + (.rates.PLN | tostring)'"
     },
     "custom/theme-toggle": {
         "format": "{icon}",
@@ -175,14 +208,14 @@
         "interval": "once"
     },
     "custom/docker": {
-    "return-type": "json",
-    "exec-on-event": true,
-    "format": "{icon}",
-    "format-icons": "",
-    "exec": "echo \"{\\\"class\\\": \\\"$(systemctl is-active docker)\\\"}\"",
-    "on-click": "systemctl start docker && pkill -SIGRTMIN+10 waybar",
-    "on-click-right": "systemctl stop docker && pkill -SIGRTMIN+10 waybar",
-    "signal": 10,
-    "interval": "once"
-  }
+        "return-type": "json",
+        "exec-on-event": true,
+        "format": "{icon}",
+        "format-icons": "",
+        "exec": "echo \"{\\\"class\\\": \\\"$(systemctl is-active docker)\\\"}\"",
+        "on-click": "systemctl start docker && pkill -SIGRTMIN+10 waybar",
+        "on-click-right": "systemctl stop docker && pkill -SIGRTMIN+10 waybar",
+        "signal": 10,
+        "interval": "once"
+    }
 }

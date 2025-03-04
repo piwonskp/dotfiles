@@ -74,8 +74,9 @@ window#waybar.chromium {
 #pulseaudio,
 #tray,
 #mode
+
 /*.modules-right .module*/
-{
+    {
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
@@ -86,8 +87,7 @@ window#waybar.chromium {
 #idle_inhibitor,
 #inhibitor,
 #custom-docker,
-#custom-theme-toggle
-{
+#custom-theme-toggle {
     padding: 0 5px;
 }
 
@@ -102,17 +102,15 @@ window#waybar.chromium {
     animation: blink-border 1s linear infinite;
 }
 
-#group-power .module
-{
+#group-power .module {
     padding: 0 20px;
     margin: 0 0px;
     color: #ffffff;
 }
 
 #group-power .module:hover,
-#pulseaudio.muted, 
-#network.disconnected
-{
+#pulseaudio.muted,
+#network.disconnected {
     background: rgba(0, 0, 0, 0.2);
     color: #00d69e;
     box-shadow: inherit;
@@ -126,10 +124,11 @@ window#waybar.chromium {
 }
 
 .active {
-	color: @primary;
+    color: @primary;
 }
+
 .inactive {
-	color: white;
+    color: white;
 }
 
 .warning {
@@ -159,6 +158,7 @@ window#waybar.chromium {
 .critical {
     border-bottom: 3px solid red;
 }
+
 /*.danger {
     border-bottom: 3px solid red;
     animation: blink-border 0.5s linear infinite;
@@ -178,11 +178,11 @@ tooltip {
 }
 
 @keyframes blink-border {
-  50% {
-    border: none;
+    50% {
+        border: none;
 
-    /*border: 2px dotted rgba(0, 214, 158, 0);*/
-  }
+        /*border: 2px dotted rgba(0, 214, 158, 0);*/
+    }
 }
 
 /* transform not supported (yet?) */
