@@ -307,6 +307,8 @@ bindgesture pinch:3:inward+left move left
 bindgesture pinch:3:inward+right move right
 # bindgesture pinch:4:inward exec $menu
 bindgesture swipe:4:right exec $menu
+# Toggle bar visibility
+bindsym $mod+Tab exec killall -SIGUSR1 waybar
 
 
 # gaps inner 15
@@ -322,6 +324,14 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +5% # increase screen brightnes
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # decrease screen brightness
 bindsym $mod+p exec swaymsg "output eDP-1 power toggle"
 # Apps
+
+# Doesn't work when there are other windows in scratchpad because there's a bug https://github.com/swaywm/sway/issues/6030
+bindsym $mod+grave exec swaymsg '[instance="chatgpt.com"] scratchpad show' || swaymsg '[instance="chatgpt.com"] move to scratchpad' || chromium --class AI --app=https://chatgpt.com
+bindsym $mod+Shift+grave exec swaymsg '[instance="perplexity.ai"] scratchpad show' || swaymsg '[instance="perplexity.ai"] move to scratchpad' || chromium --class AI --app=https://perplexity.ai
+# Would be best to use --class AI, but: https://issues.chromium.org/issues/40172351
+for_window [instance="chatgpt.com"] floating enable, resize set width 20ppt, move position 0 0
+for_window [instance="perplexity.ai"] floating enable, resize set width 20ppt, move position 0 0
+
 bindsym $mod+q exec firefox
 
 bindsym $mod+f1 exec $lock
