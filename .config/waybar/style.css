@@ -29,26 +29,45 @@ window#waybar {
     transition-duration: .5s;
 }
 
-window#waybar.hidden {
+/* window#waybar.hidden {
     opacity: 0.2;
-}
+} */
 
 /*
 window#waybar.empty {
     background-color: transparent;
 }
 window#waybar.solo {
-    background-color: #FFFFFF;
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.8) 0%, rgba(18, 18, 18, 0.6) 90%, rgba(34, 34, 34, 0) 100%);
 }
 */
 
-window#waybar.foot {
-    background-color: rgba(36, 36, 36, 0.6);
-}
-
-window#waybar.chromium {
+/* window#waybar.chromium {
     background-color: @black;
     border: none;
+} */
+
+/* #temperature.critical {
+    background-color: @urgent;
+} */
+
+/* Does not seem to have any effect */
+label:focus {
+    background-color: @black;
+}
+
+tooltip {
+    border-radius: 1em;
+}
+
+#mode {
+    border-bottom: 3px solid @primary;
+    color: @primary;
+    animation: blink-border 1s linear infinite;
+}
+
+window#waybar.foot {
+    background-color: rgba(36, 36, 36, 0.6);
 }
 
 #workspaces button {
@@ -75,18 +94,8 @@ window#waybar.chromium {
     background-color: @urgent;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#tray,
-#mode
 
-/*.modules-right .module*/
+.modules-right .module
     {
     padding: 0 10px;
     margin: 0 4px;
@@ -99,17 +108,11 @@ window#waybar.chromium {
 #custom-docker,
 #custom-theme-toggle {
     padding: 0 5px;
+    margin: 0 0px;
 }
 
-#custom-ticker {
-    padding: 10px;
-}
-
-
-#mode {
-    border-bottom: 3px solid @primary;
-    color: @primary;
-    animation: blink-border 1s linear infinite;
+#custom-theme-toggle {
+    font-weight: bold;
 }
 
 #group-power .module {
@@ -146,6 +149,10 @@ window#waybar.chromium {
     border-bottom: 3px solid @warning;
 }
 
+.critical {
+    border-bottom: 3px solid @urgent;
+}
+
 @keyframes blink {
     to {
         background-color: @font-color;
@@ -165,27 +172,11 @@ window#waybar.chromium {
     border-radius: 1em;
 }
 
-.critical {
-    border-bottom: 3px solid @danger;
-}
-
 /*.danger {
     border-bottom: 3px solid @danger;
     animation: blink-border 0.5s linear infinite;
 }
 */
-
-label:focus {
-    background-color: @black;
-}
-
-tooltip {
-    border-radius: 1em;
-}
-
-#temperature.critical {
-    background-color: @urgent;
-}
 
 @keyframes blink-border {
     50% {
