@@ -1,5 +1,12 @@
 @define-color primary #00d69e;
-
+@define-color white #ffffff;
+@define-color light-gray #676E7D;
+@define-color urgent #eb4d4b;
+@define-color green #26A65B;
+@define-color orange orange;
+@define-color red red;
+@define-color danger #f53c3c;
+@define-color black #000000;
 
 * {
     border: none;
@@ -13,7 +20,7 @@ window#waybar {
     /* background-color: rgba(43, 48, 59, 0.5); */
     background-color: transparent;
     /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
-    color: #ffffff;
+    color: @white;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -36,14 +43,14 @@ window#waybar.foot {
 }
 
 window#waybar.chromium {
-    background-color: #000000;
+    background-color: @black;
     border: none;
 }
 
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #676E7D;
+    color: @light-gray;
     border-bottom: 2px solid transparent;
 }
 
@@ -51,17 +58,17 @@ window#waybar.chromium {
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 3px solid @white;
 }
 
 #workspaces button.focused {
     /* background-color: #64727D; */
-    border-bottom: 3px solid #ffffff;
-    color: #ffffff;
+    border-bottom: 3px solid @white;
+    color: @white;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: @urgent;
 }
 
 #clock,
@@ -79,7 +86,7 @@ window#waybar.chromium {
     {
     padding: 0 10px;
     margin: 0 4px;
-    color: #ffffff;
+    color: @white;
 }
 
 
@@ -105,22 +112,22 @@ window#waybar.chromium {
 #group-power .module {
     padding: 0 20px;
     margin: 0 0px;
-    color: #ffffff;
+    color: @white;
 }
 
 #group-power .module:hover,
 #pulseaudio.muted,
 #network.disconnected {
     background: rgba(0, 0, 0, 0.2);
-    color: #00d69e;
+    color: @primary;
     box-shadow: inherit;
-    border-bottom: 3px solid #00d69e;
+    border-bottom: 3px solid @primary;
 }
 
 #battery.charging {
-    color: #ffffff;
+    color: @white;
     /* background-color: #26A65B; */
-    border-bottom: 3px solid #26A65B;
+    border-bottom: 3px solid @green;
 }
 
 .active {
@@ -128,25 +135,25 @@ window#waybar.chromium {
 }
 
 .inactive {
-    color: white;
+    color: @white;
 }
 
 .warning {
-    color: #ffffff;
-    border-bottom: 3px solid orange;
+    color: @white;
+    border-bottom: 3px solid @orange;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @white;
+        color: @black;
     }
 }
 
 #battery.critical:not(.charging),
 .danger {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @danger;
+    color: @white;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -156,7 +163,7 @@ window#waybar.chromium {
 }
 
 .critical {
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid @red;
 }
 
 /*.danger {
@@ -166,7 +173,7 @@ window#waybar.chromium {
 */
 
 label:focus {
-    background-color: #000000;
+    background-color: @black;
 }
 
 tooltip {
@@ -174,7 +181,7 @@ tooltip {
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: @urgent;
 }
 
 @keyframes blink-border {
@@ -193,14 +200,14 @@ tooltip {
 
 #idle_inhibitor.activated,
 #inhibitor.activated {
-    color: #00d69e;
+    color: @primary;
     /* color: #2d3436;*/
     /* border-bottom: 3px solid #00d69e;
     animation: spin 3s ease infinite;*/
 
     /*border-top: 3px solid #00d69e;*/
     animation: blink-border 2s ease infinite;
-    border: 2px dotted #00d69e;
+    border: 2px dotted @primary;
     border-radius: 50%;
 
     /*border: 2px solid #00d69e;*/
