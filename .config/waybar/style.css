@@ -1,12 +1,16 @@
+/* Color palette */
 @define-color primary #00d69e;
-@define-color white #ffffff;
-@define-color light-gray #676E7D;
-@define-color urgent #eb4d4b;
-@define-color green #26A65B;
-@define-color orange orange;
-@define-color red red;
-@define-color danger #f53c3c;
 @define-color black #000000;
+
+/* Fonts */
+@define-color font-color #ffffff;
+@define-color font-inactive #676E7D;
+
+/* Importance levels */
+@define-color good #26A65B;
+@define-color warning orange;
+@define-color danger #f53c3c;
+@define-color urgent #eb4d4b;
 
 * {
     border: none;
@@ -20,7 +24,7 @@ window#waybar {
     /* background-color: rgba(43, 48, 59, 0.5); */
     background-color: transparent;
     /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
-    color: @white;
+    color: @font-color;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -50,7 +54,7 @@ window#waybar.chromium {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: @light-gray;
+    color: @font-inactive;
     border-bottom: 2px solid transparent;
 }
 
@@ -58,13 +62,13 @@ window#waybar.chromium {
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
-    border-bottom: 3px solid @white;
+    border-bottom: 3px solid @font-color;
 }
 
 #workspaces button.focused {
     /* background-color: #64727D; */
-    border-bottom: 3px solid @white;
-    color: @white;
+    border-bottom: 3px solid @font-color;
+    color: @font-color;
 }
 
 #workspaces button.urgent {
@@ -86,7 +90,6 @@ window#waybar.chromium {
     {
     padding: 0 10px;
     margin: 0 4px;
-    color: @white;
 }
 
 
@@ -112,7 +115,7 @@ window#waybar.chromium {
 #group-power .module {
     padding: 0 20px;
     margin: 0 0px;
-    color: @white;
+    color: @font-color;
 }
 
 #group-power .module:hover,
@@ -125,9 +128,9 @@ window#waybar.chromium {
 }
 
 #battery.charging {
-    color: @white;
+    color: @font-color;
     /* background-color: #26A65B; */
-    border-bottom: 3px solid @green;
+    border-bottom: 3px solid @good;
 }
 
 .active {
@@ -135,17 +138,17 @@ window#waybar.chromium {
 }
 
 .inactive {
-    color: @white;
+    color: @font-color;
 }
 
 .warning {
-    color: @white;
-    border-bottom: 3px solid @orange;
+    color: @font-color;
+    border-bottom: 3px solid @warning;
 }
 
 @keyframes blink {
     to {
-        background-color: @white;
+        background-color: @font-color;
         color: @black;
     }
 }
@@ -153,7 +156,7 @@ window#waybar.chromium {
 #battery.critical:not(.charging),
 .danger {
     background-color: @danger;
-    color: @white;
+    color: @font-color;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -163,11 +166,11 @@ window#waybar.chromium {
 }
 
 .critical {
-    border-bottom: 3px solid @red;
+    border-bottom: 3px solid @danger;
 }
 
 /*.danger {
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid @danger;
     animation: blink-border 0.5s linear infinite;
 }
 */
