@@ -329,8 +329,8 @@ bindsym $mod+p exec swaymsg "output eDP-1 power toggle"
 bindsym $mod+grave exec swaymsg '[instance="chatgpt.com"] scratchpad show' || swaymsg '[instance="chatgpt.com"] move to scratchpad' || chromium --class AI --app=https://chatgpt.com
 bindsym $mod+Shift+grave exec swaymsg '[instance="perplexity.ai"] scratchpad show' || swaymsg '[instance="perplexity.ai"] move to scratchpad' || chromium --class AI --app=https://perplexity.ai
 # Would be best to use --class AI, but: https://issues.chromium.org/issues/40172351
-for_window [instance="chatgpt.com"] floating enable, resize set width 20ppt, move position 0 0
-for_window [instance="perplexity.ai"] floating enable, resize set width 20ppt, move position 0 0
+for_window [instance="chatgpt.com"] floating enable, sticky enable, resize set width 20ppt, move position 0 0
+for_window [instance="perplexity.ai"] floating enable, sticky enable, resize set width 20ppt, move position 0 0
 
 bindsym $mod+q exec firefox
 
