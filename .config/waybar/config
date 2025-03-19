@@ -69,7 +69,8 @@
     "custom/sleep": {
         "format": "",
         "tooltip-format": "sleep",
-        "on-click": "sh -c '(sleep 0.3s; systemctl suspend)' & disown",
+        // Without sleep and disown waybar breaks. See https://github.com/Alexays/Waybar/issues/991
+        "on-click": "sh -c '(sleep 0.4s; systemctl suspend)' & disown",
         "spacing": 500
     },
     "custom/reboot": {
