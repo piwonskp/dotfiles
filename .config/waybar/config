@@ -15,7 +15,6 @@
         "custom/ticker",
         "inhibitor",
         "idle_inhibitor",
-        "custom/docker",
         "custom/theme-toggle",
         "custom/github",
         "backlight",
@@ -231,17 +230,18 @@
         "signal": 11,
         "interval": "once"
     },
-    "custom/docker": {
-        "return-type": "json",
-        "exec-on-event": true,
-        "format": "{icon}",
-        "format-icons": "",
-        "exec": "echo \"{\\\"class\\\": \\\"$(systemctl is-active docker)\\\"}\"",
-        "on-click": "systemctl start docker && pkill -SIGRTMIN+10 waybar",
-        "on-click-right": "systemctl stop docker && pkill -SIGRTMIN+10 waybar",
-        "signal": 10,
-        "interval": "once"
-    },
+    // Template for systemd service / unit switch
+    // "custom/docker": {
+    //     "return-type": "json",
+    //     "exec-on-event": true,
+    //     "format": "{icon}",
+    //     "format-icons": "",
+    //     "exec": "echo \"{\\\"class\\\": \\\"$(systemctl is-active docker)\\\"}\"",
+    //     "on-click": "systemctl start docker && pkill -SIGRTMIN+10 waybar",
+    //     "on-click-right": "systemctl stop docker && pkill -SIGRTMIN+10 waybar",
+    //     "signal": 10,
+    //     "interval": "once"
+    // },
     "custom/github": {
         "format": "{} ",
         "return-type": "json",
