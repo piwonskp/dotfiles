@@ -58,6 +58,8 @@ window#waybar.solo {
 
 tooltip {
     border-radius: 1em;
+    background: rgba(43, 48, 59, 0.5);
+    border: 1px solid rgba(100, 114, 125, 0.5);
 }
 
 #mode {
@@ -69,6 +71,36 @@ tooltip {
 window#waybar.foot {
     background-color: rgba(36, 36, 36, 0.6);
 }
+
+#custom-launcher {
+    font-size: 2em;
+    padding-left: 8px;
+    padding-right: 13px;
+    
+    border-bottom-right-radius: 100px 100px;
+    border-right: 3px solid @font-color;
+
+    min-width: 30px;
+    opacity: 0.6;
+}
+
+#custom-launcher:hover {
+    animation: hover-launcher 0.5s forwards;
+    /* border-right: 3px solid transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box; */
+}
+
+@keyframes hover-launcher {
+    to {
+        opacity: 1;
+        color: @primary;
+        background-color: rgba(26, 26, 26, 0.6);
+        /* background: linear-gradient(rgba(26, 26, 26, 1), rgba(26, 26, 26, 1)) padding-box, 
+        linear-gradient(to top, white, @primary) border-box; Gradient */
+    }
+}
+
 
 #workspaces button {
     padding: 0 5px;
@@ -92,7 +124,45 @@ window#waybar.foot {
 }
 
 #workspaces button.urgent {
-    background-color: @urgent;
+    font-weight: bold;
+    animation: blink-text 1s linear infinite, bounce 0.9s ease-in-out infinite;
+    /* animation: blink-text 1s linear infinite, bounce 0.9s linear infinite; */
+    color: @font-color;
+    border-bottom: 3px solid @font-color;
+    padding-bottom: 0px;
+}
+
+@keyframes blink-text {
+    50% {
+        color: @urgent;
+        border-bottom: 3px solid @urgent;
+    }
+}
+
+@keyframes bounce {
+    /* Range <-20px, 17px> (40px - 3px border) */ 
+    0% {
+        margin-top: -10px;
+    }
+    50% {
+        margin-top: 10px;
+    }
+    100% {
+        margin-top: -10px;
+    }
+    /* 0% {
+        margin-top: 0px;
+    }
+    25% {
+        margin-top: 10px;
+    }
+    75% {
+        margin-top: -10px;
+    }
+    100% {
+        margin-top: 0px;
+    } */
+
 }
 
 
@@ -106,10 +176,14 @@ window#waybar.foot {
 /* Mode buttons */
 #idle_inhibitor,
 #inhibitor,
-#custom-docker,
 #custom-theme-toggle {
     padding: 0 5px;
     margin: 0 0px;
+}
+
+
+#inhibitor {
+    font-size: 2.5em;
 }
 
 #custom-theme-toggle {

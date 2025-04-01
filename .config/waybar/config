@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
+        "custom/launcher", "sway/workspaces",
         "sway/mode"
     ],
     "modules-center": [
@@ -27,6 +27,11 @@
         "tray",
         "group/group-power"
     ],
+    "custom/launcher": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "rofi -show drun || killall rofi"
+    },
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 14,
@@ -92,8 +97,8 @@
         "what": "sleep",
         "format": "{icon}",
         "format-icons": {
-            "activated": "🖥️",
-            "deactivated": "🔒"
+            "activated": "󰒳",
+            "deactivated": "󰒲"
         },
     },
     "idle_inhibitor": {
@@ -195,7 +200,7 @@
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-muted": "<span size='150%' rise='-1000'>󰝟</span> {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
