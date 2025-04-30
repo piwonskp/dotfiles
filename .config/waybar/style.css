@@ -66,6 +66,12 @@ tooltip {
     border-bottom: 3px solid @primary;
     color: @primary;
     animation: blink-border 1s linear infinite;
+    /* background-color: rgba(26, 26, 26, 0.6); */
+    background: linear-gradient(rgba(26, 26, 26, 1), rgba(26, 26, 26, 0.4));
+    border-bottom-right-radius: 100px 100px;
+    border-bottom-left-radius: 100px 100px;
+    padding: 0 15px;
+    font-weight: bold;
 }
 
 window#waybar.foot {
@@ -107,6 +113,12 @@ window#waybar.foot {
     background-color: transparent;
     color: @font-inactive;
     border-bottom: 2px solid transparent;
+}
+
+#workspaces {
+    /* border-bottom-right-radius: 100px 100px;
+    border-right: 3px solid @font-color;
+    padding-right: 13px; */
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -166,6 +178,29 @@ window#waybar.foot {
 }
 
 
+/* @keyframes show-notification {
+    0% {
+        max-height: 0px;
+    }
+    100% {
+        min-height: none;
+        background-color: @font-color;
+    }
+} */
+
+.modules-center .module {
+    padding: 0 5px;
+}
+
+#custom-org {
+    font-size: 2em;
+    /* border-bottom-left-radius: 100px 100px;
+    border-left: 3px solid @font-color;
+    padding-left: 10px;
+    margin-left: -3px; */
+}
+
+
 .modules-right .module
     {
     padding: 0 10px;
@@ -198,7 +233,8 @@ window#waybar.foot {
 
 #group-power .module:hover,
 #pulseaudio.muted,
-#network.disconnected {
+#network.disconnected,
+.notify {
     /* background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit; */
     color: @primary;

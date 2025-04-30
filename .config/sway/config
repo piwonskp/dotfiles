@@ -26,8 +26,9 @@ set $lock $random_image swaylock --daemonize -i
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg ~/.config/sway/wallpaper.jpg fill
-exec_always $random_image swaybg -m fill -i
-output "LVDS-1" pos 0 0
+exec_always pkill swaybg && $random_image swaybg -m fill -i
+# output "LVDS-1" pos 0 0
+output "HDMI-A-1" pos 0 0
 #
 # Example configuration:
 #
@@ -166,6 +167,8 @@ input type:touchpad {
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
+    # Toggle bar visibility
+    bindsym $mod+Shift+f exec killall -SIGUSR1 waybar
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -307,8 +310,6 @@ bindgesture pinch:3:inward+left move left
 bindgesture pinch:3:inward+right move right
 # bindgesture pinch:4:inward exec $menu
 bindgesture swipe:4:right exec $menu
-# Toggle bar visibility
-bindsym $mod+Tab exec killall -SIGUSR1 waybar
 
 
 # gaps inner 15
@@ -326,11 +327,21 @@ bindsym --locked $mod+p exec swaymsg "output eDP-1 power toggle"
 # Apps
 
 # Doesn't work when there are other windows in scratchpad because there's a bug https://github.com/swaywm/sway/issues/6030
-bindsym $mod+grave exec swaymsg '[instance="chatgpt.com"] scratchpad show' || swaymsg '[instance="chatgpt.com"] move to scratchpad' || chromium --class AI --app=https://chatgpt.com
-bindsym $mod+Shift+grave exec swaymsg '[instance="perplexity.ai"] scratchpad show' || swaymsg '[instance="perplexity.ai"] move to scratchpad' || chromium --class AI --app=https://perplexity.ai
+bindsym $mod+Tab exec swaymsg '[instance="chatgpt.com"] scratchpad show' || swaymsg '[instance="chatgpt.com"] move to scratchpad' || chromium --class AI --app=https://chatgpt.com
+bindsym $mod+Shift+Tab exec swaymsg '[instance="perplexity.ai"] scratchpad show' || swaymsg '[instance="perplexity.ai"] move to scratchpad' || chromium --class AI --app=https://perplexity.ai
 # Would be best to use --class AI, but: https://issues.chromium.org/issues/40172351
 for_window [instance="chatgpt.com"] floating enable, sticky enable, resize set width 20ppt, move position 0 0
 for_window [instance="perplexity.ai"] floating enable, sticky enable, resize set width 20ppt, move position 0 0
+
+for_window [app_id="dropdown-terminal"] floating enable, move absolute position center
+for_window [app_id="python"] floating enable, move absolute position center
+bindsym $mod+grave exec swaymsg '[app_id="dropdown-terminal"] scratchpad show' || swaymsg '[app_id="dropdown-terminal"] move to scratchpad' || $term --app-id dropdown-terminal
+bindsym $mod+Shift+grave exec swaymsg '[app_id="python"] scratchpad show' || swaymsg '[app_id="python"] move to scratchpad' || $term --app-id python -e python
+
+for_window [title="Emacs quick notes"] floating enable, move absolute position center
+for_window [title="Emacs TODO list"] floating enable, move absolute position center
+bindsym $mod+n exec swaymsg '[title="Emacs quick notes"] scratchpad show' || swaymsg '[title="Emacs quick notes"] move to scratchpad' || emacs --title 'Emacs quick notes' --find-file "$(date +~/org/inbox/%Y-%m-%d-%H%M%S.org)"
+bindsym $mod+Shift+n exec swaymsg '[title="Emacs TODO list"] scratchpad show' || swaymsg '[title="Emacs TODO list"] move to scratchpad' || emacs --title 'Emacs TODO list' --eval '(todo-show)' 
 
 bindsym $mod+q exec firefox
 

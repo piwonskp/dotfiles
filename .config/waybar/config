@@ -6,10 +6,12 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/launcher", "sway/workspaces",
-        "sway/mode"
     ],
     "modules-center": [
-        "sway/window"
+        "custom/org",
+        "sway/mode",
+        // "sway/window", 
+        "custom/notification"
     ],
     "modules-right": [
         "custom/ticker",
@@ -163,7 +165,7 @@
         "format": "{percent}% {icon}",
         "format-icons": [
             "",
-            ""
+            "<span weight='bold'></span>",
         ]
     },
     "battery": {
@@ -253,5 +255,25 @@
         "interval": 60,
         "exec": "$HOME/.config/waybar/github.sh",
         "on-click": "xdg-open https://github.com/notifications"
+    },
+    "custom/notification": {
+        "exec": "~/dev/glance/target/release/glance",
+        "format": "{icon} {text}",
+        "format-icons": "",
+        "on-scroll-down": "pkill -SIGRTMIN+2 glance",
+        "on-scroll-up": "pkill -SIGRTMIN+3 glance",
+        "on-click": "pkill -SIGRTMIN glance",
+        "on-click-right": "gdbus call --session --dest org.freedesktop.Notifications --object-path /org/freedesktop/Notifications --method org.freedesktop.Notifications.CloseNotification 0",
+        "interval": 0,
+        "return-type": "json"
+    },
+    "custom/org": {
+        "format-icons": "󱓶",
+        "format": "{icon}",
+        "exec": "bash ~/.config/waybar/todo.sh",
+        "on-click": "swaymsg '[title=\"Emacs TODO list\"] scratchpad show' || swaymsg '[title=\"Emacs TODO list\"] move to scratchpad' || emacs --title 'Emacs TODO list' --eval '(todo-show)'",
+        "on-click-right": "swaymsg '[title=\"Emacs quick notes\"] scratchpad show' || swaymsg '[title=\"Emacs quick notes\"] move to scratchpad' || emacs --title 'Emacs quick notes' --find-file \"$(date +~/org/inbox/%Y-%m-%d-%H%M%S.org)\"",
+        "return-type": "json",
+        "signal": 3
     }
 }
