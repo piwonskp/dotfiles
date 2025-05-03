@@ -1,0 +1,24 @@
+{
+    "height": 30,
+    "modules-left": ["custom/launcher", "sway/workspaces"],
+    "modules-right": [
+        "custom/ticker",
+        "inhibitor",
+        "idle_inhibitor",
+        "custom/theme-toggle",
+        "custom/github",
+        "backlight",
+        "pulseaudio",
+        "network",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray",
+        "group/group-power"
+    ],
+    "include": [
+        "~/.config/waybar/modules.json",
+        "~/.config/waybar/power.json"
+    ]
+}
